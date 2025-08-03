@@ -1,8 +1,9 @@
-<h1>Make your vote!</h1>
+<h1> <%= @vote.topic %> </h1>
 
 <%= form_with model: @vote do |form| %>
-  Selections:
+  Selection:
   <ul>
+    <%# TODO: add first, second, third choice info %>
     <%= form.fields_for :selections do |selection_form|%>
       <li>
         <%= selection_form.select :selection, @vote.choices %>

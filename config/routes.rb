@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
   resources :votes, only: [:index, :show, :new, :create]
+  resources :ballots, only: [:index, :show, :new, :create]
 
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "/votes", to: "votes#index"
   get "votes/new", controller: "votes", action: :new
+
+  get "/ballots", to: "ballots#index"
+  get "ballots/new", controller: "ballots", action: :new
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

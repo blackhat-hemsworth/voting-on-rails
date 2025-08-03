@@ -1,6 +1,4 @@
-# TODO: Ballot class -- votes, options, n_selections + view (what is part of vote vs ballot...)
-# TODO: Ballot creation interface (use CLI at first)
-# TODO: Election class -- is this needed?
+# TODO: Election class -- holds participants, Ballots
 # TODO: COUNT the votes
 # TODO: User / etc. validation 1 user per ballot?
 
@@ -8,8 +6,10 @@ class VotesController < ApplicationController
   def index
     @votes = Vote.all
   end
-  def new
-    @vote = Vote.new({ choices: %w[ Brenda Davis Fateh Frey Hampton ], n_selections: 3})
+  # TODO: vote show (for Ballot show)
+  # TODO: remove defaults (eventually)
+  def new(topic = "Mayor's Race", choices = %w[ Abstain Brenda Davis Fateh Frey Hampton NoEndorsement ], n_selections = 3 )
+    @vote = Vote.new({ topic: topic, choices: choices, n_selections: n_selections})
     @vote.n_selections.times { @vote.selections.build }
   end
 
@@ -17,7 +17,7 @@ class VotesController < ApplicationController
   end
 
   def create
-    @vote = Vote.new(vote_params) # TODO: refactor after actual multi select
+    @vote = Vote.new(vote_params)
 
     if @vote.save
       redirect_to @vote
