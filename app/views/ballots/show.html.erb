@@ -1,0 +1,10 @@
+<h1><%= @ballot.name %></h1>
+
+<div id="votes">
+  <%= @votes.each do |vote| %>
+    <div>
+      <%= vote.topic %>
+      <%= vote.n_selections %>
+    </div>
+  <% end %>
+</div>

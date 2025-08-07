@@ -4,6 +4,7 @@
   Selection:
   <ul>
     <%# TODO: add first, second, third choice info %>
+    <%# TODO: refactor to vote_selection obj %>
     <%= form.fields_for :selections do |selection_form|%>
       <li>
         <%= selection_form.select :selection, @vote.choices %>

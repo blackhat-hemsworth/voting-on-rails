@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :votes, only: [:index, :show, :new, :create]
   resources :ballots, only: [:index, :show, :new, :create]
 
+  root "ballots#index"
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "/votes", to: "votes#index"

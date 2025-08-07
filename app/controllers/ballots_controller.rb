@@ -1,11 +1,14 @@
 class BallotsController < ApplicationController
   # TODO: hash id for url / email
   def index
-    # TODO: ballot index view
     @ballots = Ballot.all
   end
 
-  # TODO: ballot show
+  def show
+    @ballot = Ballot.find(params[:id])
+    @votes = @ballot.votes
+  end
+
   def new
     @ballot = Ballot.new
     @ballot.votes.build
@@ -23,6 +26,6 @@ class BallotsController < ApplicationController
 
   private
     def ballot_params
-      params.require(:ballot).permit(votes_attributes: [ :id, :topic, :choices, :n_selections ])
+      params.require(:ballot).permit(:name, votes_attributes: [ :id, :topic, :choices, :n_selections ])
     end
 end

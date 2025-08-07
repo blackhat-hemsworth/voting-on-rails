@@ -1,12 +1,7 @@
 # TODO: Election class -- holds participants, Ballots
-# TODO: COUNT the votes
 # TODO: User / etc. validation 1 user per ballot?
 
 class VotesController < ApplicationController
-  def index
-    @votes = Vote.all
-  end
-  # TODO: vote show (for Ballot show)
   # TODO: remove defaults (eventually)
   def new(topic = "Mayor's Race", choices = %w[ Abstain Brenda Davis Fateh Frey Hampton NoEndorsement ], n_selections = 3 )
     @vote = Vote.new({ topic: topic, choices: choices, n_selections: n_selections})
@@ -14,6 +9,7 @@ class VotesController < ApplicationController
   end
 
   def show
+    @vote = Vote.find(params[:id])
   end
 
   def create

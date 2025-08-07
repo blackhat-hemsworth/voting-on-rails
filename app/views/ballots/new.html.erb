@@ -4,6 +4,8 @@
               data: { controller: 'nested-form',
                       nested_form_wrapper_selector_value: '.nested-form-wrapper'
               } do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
 
   <template data-nested-form-target="template">
     <%= f.fields_for :votes, Vote.new, child_index: 'NEW_RECORD' do |vote_fields| %>

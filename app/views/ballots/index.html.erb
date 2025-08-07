@@ -1,0 +1,9 @@
+<h1>Ballots</h1>
+
+<div id = "ballots">
+  <% @ballots.each do |ballot| %>
+    <div>
+      <%= link_to ballot.name, ballot %>
+    </div>
+  <% end %>
+</div>
