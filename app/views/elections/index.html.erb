@@ -1,0 +1,16 @@
+<h1>Elections</h1>
+
+<%= link_to "Host a new election", new_election_path %>
+
+<br>
+<br>
+
+
+<div id = "elections">
+  <% @elections.each do |election| %>
+    <div>
+      <%= link_to election.name, election %>
+      <%= election.description %>
+    </div>
+  <% end %>
+</div>

@@ -1,5 +1,4 @@
 class BallotsController < ApplicationController
-  # TODO: hash id for url / email
   def index
     @ballots = Ballot.all
   end
@@ -20,7 +19,7 @@ class BallotsController < ApplicationController
     if @ballot.save
       redirect_to @ballot, notice: "Ballot was successfully created."
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
