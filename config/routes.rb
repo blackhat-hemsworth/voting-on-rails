@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :elections, only: [ :index, :show, :new, :create ] do
     resources :participants
+    resources :ballots, only: [ :index, :show, :new, :create ]
   end
-  resources :ballots, only: [ :index, :show, :new, :create ]
   resources :votes, only: [ :index, :show, :new, :create ]
 
   root "elections#index"

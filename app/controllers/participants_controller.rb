@@ -1,3 +1,4 @@
+# TODO: participant relation to Eleciton (do like vote - selection probably)
 class ParticipantsController < ApplicationController
   def new
     @participant = Participant.new

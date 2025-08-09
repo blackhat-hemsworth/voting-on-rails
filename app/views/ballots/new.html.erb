@@ -1,9 +1,9 @@
 <h1>Configure the Ballot</h1>
 
-<%= form_with model: @ballot,
+<%= form_with(model: [@election, @ballot], local: true,
               data: { controller: 'nested-form',
                       nested_form_wrapper_selector_value: '.nested-form-wrapper'
-              } do |f| %>
+              }) do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
 
@@ -14,13 +14,12 @@
   </template>
 
   <%= f.fields_for :votes do |vote_fields| %>
-    <%= render "vote_form", f: vote_fields  %>
+    <%= render "vote_form", f: vote_fields %>
   <% end %>
-
   <!-- Inserted elements will be injected before that target. -->
   <div data-nested-form-target="target"></div>
 
   <button type="button" data-action="nested-form#add">Add vote</button>
 
-  <%= f.submit 'Save ballots' %>
+  <%= f.submit "Save ballots" %>
 <% end %>

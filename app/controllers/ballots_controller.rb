@@ -1,6 +1,8 @@
 class BallotsController < ApplicationController
+  before_action :get_election
+
   def index
-    @ballots = Ballot.all
+    @ballots = @election.ballots.all
   end
 
   def show
@@ -9,22 +11,28 @@ class BallotsController < ApplicationController
   end
 
   def new
-    @ballot = Ballot.new
+    @ballot = @election.ballots.build
     @ballot.votes.build
   end
 
   def create
-    @ballot = Ballot.new(ballot_params)
-
+    puts ballot_params
+    @ballot = @election.ballots.build(ballot_params)
+    puts @ballot.inspect
     if @ballot.save
-      redirect_to @ballot, notice: "Ballot was successfully created."
+      redirect_to election_ballots_path(@election), notice: "Ballot was successfully created."
     else
+      puts @ballot.errors.full_messages
       render :new, status: :unprocessable_content
     end
   end
 
   private
     def ballot_params
-      params.require(:ballot).permit(:name, votes_attributes: [ :id, :topic, :choices, :n_selections ])
+      params.require(:ballot).permit(:name, :election_id, votes_attributes: [ :id, :topic, :choices, :n_selections ])
+    end
+
+    def get_election
+      @election = Election.find(params[:election_id])
     end
 end

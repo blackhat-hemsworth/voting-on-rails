@@ -1,5 +1,3 @@
-# TODO: Election class -- holds participants, Ballots
-
 class VotesController < ApplicationController
   # TODO: remove defaults (eventually)
   def new(topic = "Mayor's Race", choices = %w[ Abstain Brenda Davis Fateh Frey Hampton NoEndorsement ], n_selections = 3)
