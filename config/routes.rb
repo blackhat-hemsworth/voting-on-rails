@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :elections, only: [ :index, :show, :new, :create ] do
+  resources :elections do
     resources :participants
-    resources :ballots, only: [ :index, :show, :new, :create ]
+    resources :ballots
   end
   resources :votes, only: [ :index, :show, :new, :create ]
 

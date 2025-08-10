@@ -1,4 +1,5 @@
 source "https://rubygems.org"
+gem "logger", "~> 1.7.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.2"

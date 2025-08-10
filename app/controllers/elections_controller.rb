@@ -1,10 +1,11 @@
 class ElectionsController < ApplicationController
+  before_action :set_election, only: [ :show, :destroy, :update ]
+
   def new
     @election = Election.new
   end
 
   def show
-    @election = Election.find(params[:id])
   end
 
   def index
@@ -21,8 +22,25 @@ class ElectionsController < ApplicationController
     end
   end
 
+  def destroy
+    @election.destroy
+    redirect_to elections_path
+  end
+
+  def update
+    if @election.update(election_params)
+      redirect_to @election
+    else
+      render :show, status: :unprocessable_entity
+    end
+  end
+
   private
     def election_params
-      params.require(:election).permit(:name, :description)
+      params.require(:election).permit(:name, :description, participants_attributes: [ :name, :email  ])
+    end
+
+    def set_election
+      @election = Election.find(params[:id])
     end
 end

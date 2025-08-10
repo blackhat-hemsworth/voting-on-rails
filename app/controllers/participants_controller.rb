@@ -1,5 +1,7 @@
-# TODO: participant relation to Eleciton (do like vote - selection probably)
 class ParticipantsController < ApplicationController
+  before_action :get_election
+  before_action :set_participant, only: [ :destroy ]
+
   def new
     @participant = Participant.new
   end
@@ -14,8 +16,21 @@ class ParticipantsController < ApplicationController
     end
   end
 
+  def destroy
+    @participant.destroy
+    redirect_to election_path
+  end
+
   private
     def participant_params
       params.require(:participant).permit(:name, :emails)
+    end
+
+    def get_election
+      @election = Election.find(params[:election_id])
+    end
+
+    def set_participant
+      @participant = Participant.find(params[:id])
     end
 end

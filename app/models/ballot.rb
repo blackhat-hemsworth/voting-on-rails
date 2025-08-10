@@ -1,6 +1,6 @@
 class Ballot < ApplicationRecord
   # TODO: BallotSubmission add
-  has_many :votes, inverse_of: :ballot
+  has_many :votes, inverse_of: :ballot, dependent: :destroy
   belongs_to :election
 
   accepts_nested_attributes_for :votes

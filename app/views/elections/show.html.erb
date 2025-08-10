@@ -1,17 +1,33 @@
 <h1><%= @election.name %></h1>
 
-<div>
+<div class="subhead">
   <%= @election.description %>
 </div>
 <br>
 
-<div>
-  <% @election.ballots.each do |ballot| %>
-    <div>
-      <%= link_to ballot.name, election_ballot_path(@election, ballot) %>
-    </div>
-  <% end %>
+<div class="row">
+  <div class="column">
+    <h2>Ballots</h2>
+    <%= render "ballot_section" %>
+  </div>
 
-  <%= link_to "Add another ballot", new_election_ballot_path(@election) %>
+  <div class="column">
+    <h2>Participants</h2>
+    <%= render "participant_list" %>
+  </div>
 </div>
-<%= link_to "Other Elections", elections_path %>
+<br>
+<br>
+
+<div>
+  <%= link_to "Other Elections", elections_path %>
+</div>
+
+<div class="right">
+  <%= button_to "Delete Election",
+  @election,
+  method: :delete,
+  data: {
+    turbo_confirm: "Are you sure?",
+  } %>
+</div>

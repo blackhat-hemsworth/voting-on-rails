@@ -1,12 +1,12 @@
 class BallotsController < ApplicationController
   before_action :get_election
+  before_action :set_ballot, only: [ :show, :destroy ]
 
   def index
     @ballots = @election.ballots.all
   end
 
   def show
-    @ballot = Ballot.find(params[:id])
     @votes = @ballot.votes
   end
 
@@ -27,6 +27,11 @@ class BallotsController < ApplicationController
     end
   end
 
+  def destroy
+    @ballot.destroy
+    redirect_to election_path
+  end
+
   private
     def ballot_params
       params.require(:ballot).permit(:name, :election_id, votes_attributes: [ :id, :topic, :choices, :n_selections ])
@@ -34,5 +39,9 @@ class BallotsController < ApplicationController
 
     def get_election
       @election = Election.find(params[:election_id])
+    end
+
+    def set_ballot
+      @ballot = Ballot.find(params[:id])
     end
 end
