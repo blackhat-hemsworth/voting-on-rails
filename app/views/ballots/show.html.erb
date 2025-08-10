@@ -1,10 +1,12 @@
 <h1><%= @ballot.name %></h1>
 
 <div id="votes">
-  <%= @votes.each do |vote| %>
+  <% @votes.each do |vote| %>
     <div>
       <%= vote.topic %>
       <%= vote.n_selections %>
     </div>
   <% end %>
+
+  <%= link_to "Back", @election %>
 </div>

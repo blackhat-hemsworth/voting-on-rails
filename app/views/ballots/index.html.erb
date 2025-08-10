@@ -3,8 +3,7 @@
 <div id = "ballots">
   <% @ballots.each do |ballot| %>
     <div>
-      <%#= TODO: fix view to show ballot info >
-      <%= link_to "Show Election", [@election] %>
+      <%= link_to "Show Election", @election %>
     </div>
   <% end %>
 </div>

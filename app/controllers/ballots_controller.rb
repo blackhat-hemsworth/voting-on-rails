@@ -20,7 +20,7 @@ class BallotsController < ApplicationController
     @ballot = @election.ballots.build(ballot_params)
     puts @ballot.inspect
     if @ballot.save
-      redirect_to election_ballots_path(@election), notice: "Ballot was successfully created."
+      redirect_to election_ballot_path(@election, @ballot), notice: "Ballot was successfully created."
     else
       puts @ballot.errors.full_messages
       render :new, status: :unprocessable_content

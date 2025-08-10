@@ -5,7 +5,6 @@
 <%= form_with model: @vote do |form| %>
   Selection:
   <ul>
-    <%# TODO: add first, second, third choice info %>
     <%# TODO: refactor to vote_selection obj %>
     <%# TODO: add choices to Ballot %>
     <%= form.fields_for :selections do |selection_form| %>

@@ -5,4 +5,13 @@
 </div>
 <br>
 
+<div>
+  <% @election.ballots.each do |ballot| %>
+    <div>
+      <%= link_to ballot.name, election_ballot_path(@election, ballot) %>
+    </div>
+  <% end %>
+
+  <%= link_to "Add another ballot", new_election_ballot_path(@election) %>
+</div>
 <%= link_to "Other Elections", elections_path %>
