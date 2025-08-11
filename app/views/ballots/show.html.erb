@@ -1,10 +1,23 @@
 <h1><%= @ballot.name %></h1>
 
-<div id="votes">
+<h3>Votes</h3>
+<div class="vote">
   <% @votes.each do |vote| %>
-    <div>
+    <div class="column">
+      <h5>Topic</h5>
       <%= vote.topic %>
+    </div>
+    <div class="column">
+      <h5>Number of selections</h5>
       <%= vote.n_selections %>
+    </div>
+    <div class="centered">
+      <h5>Choices</h5>
+      <% vote.vote_choices.each do |vc| %>
+        <div>
+          <%= vc.choice %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 

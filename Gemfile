@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 gem "logger", "~> 1.7.0"
+gem "vanilla_nested"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.2"

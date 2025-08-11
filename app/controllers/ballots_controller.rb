@@ -12,13 +12,12 @@ class BallotsController < ApplicationController
 
   def new
     @ballot = @election.ballots.build
-    @ballot.votes.build
+    @vote = @ballot.votes.build
+    2.times { @vote.vote_choices.build }
   end
 
   def create
-    puts ballot_params
     @ballot = @election.ballots.build(ballot_params)
-    puts @ballot.inspect
     if @ballot.save
       redirect_to election_ballot_path(@election, @ballot), notice: "Ballot was successfully created."
     else
@@ -34,7 +33,11 @@ class BallotsController < ApplicationController
 
   private
     def ballot_params
-      params.require(:ballot).permit(:name, :election_id, votes_attributes: [ :id, :topic, :choices, :n_selections ])
+      params
+        .require(:ballot)
+        .permit(:name, :election_id,
+                votes_attributes: [ :id, :topic, :choices, :n_selections,
+                                    vote_choices_attributes: [ :choice ] ])
     end
 
     def get_election

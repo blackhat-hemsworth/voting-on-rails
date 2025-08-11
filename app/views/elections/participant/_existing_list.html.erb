@@ -1,0 +1,12 @@
+<% @election.participants.each do |participant| %>
+  <div class="parent">
+    <div class="inline-block-child">
+      <p><strong><%= participant.name %></strong><%= " -- " + participant.email %></p>
+    </div>
+    <div class="inline-block-child">
+      <%= button_to "Remove participant",
+      election_participant_path(@election, participant),
+      method: :delete %>
+    </div>
+  </div>
+<% end %>

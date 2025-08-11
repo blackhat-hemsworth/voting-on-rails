@@ -4,26 +4,22 @@
               data: { controller: 'nested-form',
                       nested_form_wrapper_selector_value: '.nested-form-wrapper'
               }) do |f| %>
-  <%= f.label :name %>
+  <%= f.label "Ballot name" %>
   <%= f.text_field :name %>
 
-  <template data-nested-form-target="template">
-    <%= f.fields_for :votes, Vote.new, child_index: 'NEW_RECORD' do |vote_fields| %>
-      <%= render "vote_form", f: vote_fields %>
-    <% end %>
-  </template>
+  <br><br>
 
-  <%= f.fields_for :votes do |vote_fields| %>
-    <%= render "vote_form", f: vote_fields %>
-  <% end %>
+  <h3>Votes</h3>
+
+  <%= render "ballots/votes/vote_list", f: f %>
   <!-- Inserted elements will be injected before that target. -->
   <div data-nested-form-target="target"></div>
 
   <button type="button" data-action="nested-form#add">Add vote</button>
 
   <div>
-    <%= f.submit "Save votes" %>
-    <%= button_to "Cancel", :back %>
+    <%= f.submit "Save ballot" %>
+    <button type="button" onclick="history.back()">Cancel</button>
   </div>
 
 <% end %>

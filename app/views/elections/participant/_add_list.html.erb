@@ -1,17 +1,3 @@
-<% @election.participants.each do |participant| %>
-  <div class="parent">
-    <div class="inline-block-child">
-      <%= participant.name + " -- " %>
-      <%= participant.email %>
-    </div>
-    <div class="inline-block-child">
-      <%= button_to "Remove participant",
-      election_participant_path(@election, participant),
-      method: :delete %>
-    </div>
-  </div>
-<% end %>
-
 <%= form_with(model: @election, local: true,
               data: { controller: 'nested-form',
                       nested_form_wrapper_selector_value: '.nested-form-wrapper'
@@ -19,7 +5,7 @@
               }) do |f| %>
   <template data-nested-form-target="template">
     <%= f.fields_for :participants, Participant.new, child_index: 'NEW_RECORD' do |participant_fields| %>
-      <%= render "participant_form", f: participant_fields %>
+      <%= render "elections/participant/participant_form", f: participant_fields %>
     <% end %>
   </template>
   <!-- Inserted elements will be injected before that target. -->

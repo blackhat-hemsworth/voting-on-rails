@@ -1,13 +1,13 @@
 <h1>
-  <%= @vote.topic %>
+  <%= @vote_submission.topic %>
 </h1>
 
-<%= form_with model: @vote do |form| %>
+<%= form_with model: @vote_submission do |form| %>
   Selection:
   <ul>
     <%= form.fields_for :selections do |selection_form| %>
       <li>
-        <%= selection_form.select :selection, @vote.choices %>
+        <%= selection_form.select :selection, @vote_submission.choices %>
       </li>
     <% end %>
   </ul>

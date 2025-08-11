@@ -57,8 +57,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_09_010023) do
     t.index [ "ballot_id" ], name: "index_votes_on_ballot_id"
   end
 
+  create_table "vote_choices", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "choice", null: false
+    t.bigint "vote_id", null: false
+    t.index [ "vote_id" ], name: "index choices on vote id"
+  end
+
   add_foreign_key "ballots", "elections"
   add_foreign_key "participants", "elections"
   add_foreign_key "selections", "votes"
   add_foreign_key "votes", "ballots"
+  add_foreign_key "vote_choices", "votes"
 end

@@ -1,0 +1,17 @@
+<template data-nested-form-target="template">
+  <div class="vote">
+    <% v = Vote.new
+    2.times { v.vote_choices.build } %>
+    <%= f.fields_for :votes, v, child_index: 'NEW_RECORD' do |vote_fields| %>
+      <%= render "ballots/votes/vote_form", f: vote_fields %>
+    <% end %>
+  </div>
+  <br>
+</template>
+
+<div class="vote">
+  <%= f.fields_for :votes do |vote_fields| %>
+    <%= render "ballots/votes/vote_form", f: vote_fields %>
+  <% end %>
+</div>
+<br>

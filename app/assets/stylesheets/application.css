@@ -37,8 +37,26 @@ h1 {
   text-align: center
 }
 
+h3 {
+  text-align: center
+}
+
+h5 {
+  margin: 2px
+}
+
 .subhead {
   text-align: center
+}
+
+.vote {
+  border: 1px solid;
+  border-radius: 10px;
+  line-height: 30px
+}
+
+.parent {
+  line-height: 0px;
 }
 
 .inline-block-child {
@@ -51,6 +69,9 @@ h1 {
   width: 50%;
 }
 
+.centered {
+  text-align: center
+}
 .right {
   text-align: right
 }
