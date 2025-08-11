@@ -7,3 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+[ { 'name' => 'DFL convention', 'description' => 'longest day of my fucking life' },
+ { 'name' => 'RNC 2021', 'description' => 'a bad time.' } ].each do |params|
+  Election.find_or_create_by!(params)
+end

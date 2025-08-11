@@ -10,55 +10,78 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_09_010023) do
+ActiveRecord::Schema[8.0].define(version: 20_250_809_010_023) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_catalog.plpgsql"
+  enable_extension 'pg_catalog.plpgsql'
 
-  create_table "ballots", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name"
-    t.bigint "election_id", null: false
-    t.index [ "election_id" ], name: "index_ballots_on_election_id"
+  create_table 'elections', force: :cascade do |t|
+    t.string 'name', null: false
+    t.string 'description'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "elections", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'ballots', force: :cascade do |t|
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'state', null: false
+    t.string 'name', null: false
+    t.bigint 'election_id', null: false
+    t.index ['election_id'], name: 'index_ballots_on_election_id'
   end
 
-  create_table "participants", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name", null: false
-    t.string "email", null: false
-    t.bigint "election_id", null: false
-    t.index [ "election_id" ], name: "index_participants_on_election_id"
+  create_table 'participants', force: :cascade do |t|
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'name', null: false
+    t.string 'email', null: false
+    t.bigint 'election_id', null: false
+    t.index ['election_id'], name: 'index_participants_on_election_id'
   end
 
-  create_table "selections", force: :cascade do |t|
-    t.bigint "vote_id", null: false
-    t.string "selection"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "choice"
-    t.index [ "vote_id" ], name: "index_selections_on_vote_id"
+  create_table 'votes', force: :cascade do |t|
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'topic', null: false
+    t.string 'method', null: false
+    t.integer 'n_selections', null: false
+    t.bigint 'ballot_id', null: false
+    t.index ['ballot_id'], name: 'index_votes_on_ballot_id'
   end
 
-  create_table "votes", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "n_selections"
-    t.string "choices", array: true
-    t.string "topic"
-    t.bigint "ballot_id", null: false
-    t.index [ "ballot_id" ], name: "index_votes_on_ballot_id"
+  create_table 'ballot_submissions', force: :cascade do |t|
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'ballot_name', null: false
+    t.string 'state', null: false
+    t.string 'url_key', null: false
+    t.bigint 'ballot_id', null: false
+    t.index ['ballot_id'], name: 'index_ballot_submission_on_ballot_id'
+    t.bigint 'participant_id', null: false
+    t.index ['participant_id'], name: 'index_ballot_submission_on_participant_id'
   end
 
-  add_foreign_key "ballots", "elections"
-  add_foreign_key "participants", "elections"
-  add_foreign_key "selections", "votes"
-  add_foreign_key "votes", "ballots"
+  create_table 'vote_submissions', force: :cascade do |t|
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'topic', null: false
+    t.integer 'n_selections', null: false
+    t.bigint 'ballot_submission_id', null: false
+    t.index ['ballot_submission_id'], name: 'index_vote_submission_on_ballot_submission_id'
+  end
+
+  create_table 'selections', force: :cascade do |t|
+    t.bigint 'vote_submission_id', null: false
+    t.string 'selection'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['vote_submission_id'], name: 'index_selections_on_vote_submission_id'
+  end
+
+  add_foreign_key 'ballots', 'elections'
+  add_foreign_key 'participants', 'elections'
+  add_foreign_key 'selections', 'vote_submissions'
+  add_foreign_key 'votes', 'ballots'
+  add_foreign_key 'ballot_submissions', 'ballots'
+  add_foreign_key 'vote_submissions', 'ballot_submissions'
 end
