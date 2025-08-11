@@ -1,7 +1,8 @@
 # HACK: can this be converted (do votes need a controller)
 class VotesController < ApplicationController
   # HACK: remove defaults (eventually)
-  def new(topic = "Mayor's Race", choices = %w[ Abstain Brenda Davis Fateh Frey Hampton NoEndorsement ], n_selections = 3)
+  def new(topic = "Mayor's Race", choices = %w[Abstain Brenda Davis Fateh Frey Hampton NoEndorsement],
+          n_selections = 3)
     @vote = Vote.new({ topic: topic, choices: choices, n_selections: n_selections })
     @vote.n_selections.times { @vote.selections.build }
   end
