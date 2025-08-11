@@ -1,14 +1,33 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+  # Seeds file for rails_vote_collector_development:
 
-[ { 'name' => 'DFL convention', 'description' => 'longest day of my fucking life' },
- { 'name' => 'RNC 2021', 'description' => 'a bad time.' } ].each do |params|
-  Election.find_or_create_by!(params)
-end
+  puts 'Seeding: Election'
+election_1 = Election.create(name: "dfl convention", description: "longest day of my fucking life", created_at: "2025-08-10 17:10:47 UTC", updated_at: "2025-08-10 17:10:47 UTC")
+
+  puts 'Seeding: Ballot'
+ballot_1 = Ballot.create(election: election_1, created_at: "2025-08-10 17:11:51 UTC", updated_at: "2025-08-10 17:11:51 UTC", name: "ballot one")
+ballot_5 = Ballot.create(election: election_1, created_at: "2025-08-10 21:38:02 UTC", updated_at: "2025-08-10 21:38:02 UTC", name: "third ballot")
+ballot_11 = Ballot.create(election: election_1, created_at: "2025-08-10 22:32:10 UTC", updated_at: "2025-08-10 22:32:10 UTC", name: "last ballot")
+ballot_16 = Ballot.create(election: election_1, created_at: "2025-08-10 23:22:39 UTC", updated_at: "2025-08-10 23:22:39 UTC", name: "ballot one")
+  puts 'Seeding: Participant'
+participant_1 = Participant.create(election: election_1, created_at: "2025-08-10 17:21:49 UTC", updated_at: "2025-08-10 17:21:49 UTC", name: "sally mcdemocrat", email: "mcdem@hotmail.com")
+participant_3 = Participant.create(election: election_1, created_at: "2025-08-10 20:58:18 UTC", updated_at: "2025-08-10 20:58:18 UTC", name: "sam mcdemocrat", email: "smcdem@netscape")
+participant_4 = Participant.create(election: election_1, created_at: "2025-08-10 21:10:04 UTC", updated_at: "2025-08-10 21:10:04 UTC", name: "jim republican", email: "jim@photon.com")
+
+  puts 'Seeding: Vote'
+vote_1 = Vote.create(ballot: ballot_1, created_at: "2025-08-10 17:11:51 UTC", updated_at: "2025-08-10 17:11:51 UTC", n_selections: 1, topic: "stupid sandwich joke")
+vote_5 = Vote.create(ballot: ballot_5, created_at: "2025-08-10 21:38:02 UTC", updated_at: "2025-08-10 21:38:02 UTC", n_selections: 1, topic: "mayor")
+vote_6 = Vote.create(ballot: ballot_5, created_at: "2025-08-10 21:38:02 UTC", updated_at: "2025-08-10 21:38:02 UTC", n_selections: 3, topic: "parks and rec")
+vote_12 = Vote.create(ballot: ballot_11, created_at: "2025-08-10 22:32:10 UTC", updated_at: "2025-08-10 22:32:10 UTC", n_selections: 1, topic: "mayoral race")
+vote_13 = Vote.create(ballot: ballot_11, created_at: "2025-08-10 22:32:10 UTC", updated_at: "2025-08-10 22:32:10 UTC", n_selections: 1, topic: "parkboard")
+vote_18 = Vote.create(ballot: ballot_16, created_at: "2025-08-10 23:22:39 UTC", updated_at: "2025-08-10 23:22:39 UTC", n_selections: 1, topic: "mayor")
+
+  # (Skipping Selection as it has no rows)
+  puts 'Seeding: VoteChoice'
+vote_choice_1 = VoteChoice.create(vote: vote_13, created_at: "2025-08-10 22:35:13 UTC", updated_at: "2025-08-10 22:35:13 UTC", choice: "Michael")
+vote_choice_5 = VoteChoice.create(vote: vote_18, created_at: "2025-08-10 23:22:39 UTC", updated_at: "2025-08-10 23:22:39 UTC", choice: "frey")
+vote_choice_6 = VoteChoice.create(vote: vote_18, created_at: "2025-08-10 23:22:39 UTC", updated_at: "2025-08-10 23:22:39 UTC", choice: "fateh")
+vote_choice_7 = VoteChoice.create(vote: vote_18, created_at: "2025-08-10 23:22:39 UTC", updated_at: "2025-08-10 23:22:39 UTC", choice: "brenda")
+vote_choice_8 = VoteChoice.create(vote: vote_18, created_at: "2025-08-10 23:22:39 UTC", updated_at: "2025-08-10 23:22:39 UTC", choice: "jazz")
+vote_choice_9 = VoteChoice.create(vote: vote_18, created_at: "2025-08-10 23:22:39 UTC", updated_at: "2025-08-10 23:22:39 UTC", choice: "davis")
+vote_choice_10 = VoteChoice.create(vote: vote_18, created_at: "2025-08-10 23:22:39 UTC", updated_at: "2025-08-10 23:22:39 UTC", choice: "no endorsement")
+vote_choice_11 = VoteChoice.create(vote: vote_18, created_at: "2025-08-10 23:22:39 UTC", updated_at: "2025-08-10 23:22:39 UTC", choice: "abstain")
