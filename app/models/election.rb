@@ -3,4 +3,5 @@ class Election < ApplicationRecord
   has_many :participants, dependent: :destroy
 
   accepts_nested_attributes_for :ballots, :participants
+  # TODO: job for submissions
 end
