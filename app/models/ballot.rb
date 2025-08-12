@@ -1,5 +1,4 @@
-require "securerandom"
-
+# TODO: results object? Is that a case for Job handling?
 class Ballot < ApplicationRecord
   has_many :votes, inverse_of: :ballot, dependent: :destroy
   has_many :vote_choices, through: :votes
@@ -19,7 +18,6 @@ class Ballot < ApplicationRecord
       )
     ballot_submission.save
 
-    # TODO: add vote_choice ref to vote_submissions
     votes.each do |vote|
       vote_submission =
         ballot_submission
@@ -29,6 +27,10 @@ class Ballot < ApplicationRecord
           n_selections: vote.n_selections
         )
       vote_submission.save
+      vote.vote_choices.each do |vote_choice|
+        vote_choice.vote_submission_id = vote_submission.id
+        vote_choice.save
+      end
     end
   end
 end

@@ -37,12 +37,21 @@ h1 {
   text-align: center
 }
 
+h2 {
+  text-align: center
+}
+
 h3 {
   text-align: center
 }
 
 h5 {
   margin: 2px
+}
+
+ol {
+  text-align: center;
+  list-style-position: inside;
 }
 
 .subhead {
@@ -52,7 +61,8 @@ h5 {
 .vote {
   border: 1px solid;
   border-radius: 10px;
-  line-height: 30px
+  line-height: 30px;
+  overflow: auto 
 }
 
 .parent {
@@ -75,7 +85,8 @@ h5 {
   width: 33%;
 }
 .centered {
-  text-align: center
+  text-align: center;
+  align-items: center
 }
 .right {
   text-align: right

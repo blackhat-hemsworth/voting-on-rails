@@ -1,18 +1,13 @@
 Rails.application.routes.draw do
   resources :elections do
-    resources :participants
-    resources :ballots
+    resources :participants, only: %i[destroy]
+    resources :ballots, only: %i[index new show create destroy]
   end
 
-  resources :votes, only: %i[index show new create]
-  resources :ballot_submissions, only: %i[show update]
+  resources :ballot_submissions, only: %i[show edit destroy] do
+    resources :vote_submissions
+  end
 
-  root "elections#index"
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  get "/votes", to: "votes#index"
-  get "votes/new", controller: "votes", action: :new
-
-  get "/ballots", to: "ballots#index"
-  get "ballots/new", controller: "ballots", action: :new
+  root 'elections#index'
+  get 'up' => 'rails/health#show', as: :rails_health_check
 end

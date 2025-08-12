@@ -1,15 +1,27 @@
 class VoteSubmissionsController < ApplicationController
-  before_action :set_vote_submission, only: %i[]
+  before_action :set_vote_submission, only: %i[update]
+
+  def update
+    if @vote_submission.update(vote_submission_params)
+      ballot_sub = @vote_submission.ballot_submission
+      ballot_sub.state = :submitted
+      if ballot_sub.save
+        redirect_to ballot_submission_url(@vote_submission.ballot_submission)
+        return
+      end
+    end
+    render :edit, status: :unprocessable_entity
+  end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_vote_submission
     @vote_submission = VoteSubmission.find(params.expect(:id))
   end
 
-  # Only allow a list of trusted parameters through.
   def vote_submission_params
-    params.fetch(:vote_submission, {})
+    params
+      .require(:vote_submission)
+      .permit(:id, selections_attributes: %i[id selection])
   end
 end

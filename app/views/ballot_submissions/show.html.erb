@@ -1,16 +1,31 @@
-<h1><%= @ballot_submission.ballot_name %></h1>
+<h1><%= @ballot_submission.ballot_name.titleize %></h1>
+<h2><%= @ballot_submission.state.titleize %></h1>
 
-<!-- TODO: show vote_submission -->
+<div class = "centered">
+  <%= link_to "Fill out ballot", [:edit, @ballot_submission] %>
+</div>
+
 <h3>Votes</h3>
 <div class="vote">
-    <div class="column">
+  <% @ballot_submission.vote_submissions.each do |vs| %>
+    <p><strong>Selections Made: </strong><%= vs.selections.each_with_index.map{|s,i| (i+1).to_s + ". " + s.selection.titleize}.join(', ') %></p>
+    <br>
+    <div class="column3">
       <h5>Topic</h5>
+      <%= vs.topic.titleize %>
     </div>
-    <div class="column">
+    <div class="column3">
       <h5>Number of selections</h5>
+      <%= vs.n_selections %>
     </div>
-    <div class="centered">
+    <div class="column3">
       <h5>Choices</h5>
+      <% vs.vote_choices.each do |vc| %>
+        <div>
+          <%= vc.choice.titleize %>
+        </div>
+        <% end %>
     </div>
-
+  <% end %>
 </div>
+

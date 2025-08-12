@@ -21,7 +21,7 @@ class BallotsController < ApplicationController
     @ballot.state = :created
 
     if @ballot.save
-      redirect_to election_ballot_path(@election, @ballot), notice: "Ballot was successfully created."
+      redirect_to election_ballot_path(@election, @ballot), notice: 'Ballot was successfully created.'
     else
       puts @ballot.errors.full_messages
       render :new, status: :unprocessable_content
@@ -30,7 +30,7 @@ class BallotsController < ApplicationController
 
   def destroy
     @ballot.destroy
-    redirect_to election_path
+    redirect_to election_path(@election)
   end
 
   private
@@ -39,8 +39,8 @@ class BallotsController < ApplicationController
     params
       .require(:ballot)
       .permit(:name, :election_id,
-              votes_attributes: [ :id, :topic, :choices, :n_selections, :method,
-                                 { vote_choices_attributes: [ :choice ] } ])
+              votes_attributes: [:id, :topic, :choices, :n_selections, :method,
+                                 { vote_choices_attributes: [:choice] }])
   end
 
   def get_election

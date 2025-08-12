@@ -1,4 +1,5 @@
 # Seeds file for rails_vote_collector_development:
+# TODO: fake election for results testing
 
 puts 'Seeding: Election'
 election_1 = Election.create(name: 'dfl convention', description: 'longest day of my fucking life',
@@ -53,3 +54,7 @@ vote_choice_10 = VoteChoice.create(vote: vote_18, created_at: '2025-08-10 23:22:
                                    updated_at: '2025-08-10 23:22:39 UTC', choice: 'no endorsement')
 vote_choice_11 = VoteChoice.create(vote: vote_18, created_at: '2025-08-10 23:22:39 UTC',
                                    updated_at: '2025-08-10 23:22:39 UTC', choice: 'abstain')
+
+b = Ballot.where(election_id: 1).last
+p = Participant.where(:election_id == 1).first
+bs = b.make_submission(p)
