@@ -69,6 +69,11 @@ h5 {
   width: 50%;
 }
 
+.column3 {
+  text-align: center;
+  float: left;
+  width: 33%;
+}
 .centered {
   text-align: center
 }

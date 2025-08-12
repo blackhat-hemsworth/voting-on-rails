@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  # TODO: clean up
+  resources :vote_submissions
   resources :elections do
     resources :participants
     resources :ballots
   end
-  resources :votes, only: [ :index, :show, :new, :create ]
+  resources :votes, only: %i[index show new create]
 
   root "elections#index"
   get "up" => "rails/health#show", as: :rails_health_check

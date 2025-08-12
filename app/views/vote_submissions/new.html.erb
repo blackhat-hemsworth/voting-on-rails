@@ -1,0 +1,11 @@
+<% content_for :title, "New vote submission" %>
+
+<h1>New vote submission</h1>
+
+<%= render "form", vote_submission: @vote_submission %>
+
+<br>
+
+<div>
+  <%= link_to "Back to vote submissions", vote_submissions_path %>
+</div>

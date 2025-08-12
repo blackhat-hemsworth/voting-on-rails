@@ -1,4 +1,4 @@
-# HACK: can this be converted (do votes need a controller)
+# NOTE: test what of this can be removed
 class VotesController < ApplicationController
   # HACK: remove defaults (eventually)
   def new(topic = "Mayor's Race", choices = %w[Abstain Brenda Davis Fateh Frey Hampton NoEndorsement],
@@ -13,6 +13,7 @@ class VotesController < ApplicationController
 
   def create
     @vote = Vote.new(vote_params)
+    @vote.method = :singleround
 
     if @vote.save
       redirect_to @vote
@@ -22,7 +23,8 @@ class VotesController < ApplicationController
   end
 
   private
-    def vote_params
-      params.require(:vote).permit(selections_attributes: [ :id, :selection ], vote_choices_attributes: [ :choice ])
-    end
+
+  def vote_params
+    params.require(:vote).permit(selections_attributes: %i[id selection method], vote_choices_attributes: [ :choice ])
+  end
 end
