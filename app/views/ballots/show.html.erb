@@ -22,4 +22,29 @@
   </div>
   <br>
 <% end %>
+
+<% if @ballot.created? %>
+  <div class="inline-block-child">
+    <%= button_to "Edit Ballot",
+    edit_election_ballot_path(@election, @ballot),
+    method: :get %>
+  </div>
+  <div class="inline-block-child">
+    <%= button_to "Send Ballot",
+    send_ballots_election_ballot_path(@election, @ballot),
+    method: :post %>
+  </div>
+  <div class="inline-block-child">
+    <%= button_to "Remove Ballot",
+    election_ballot_path(@election, @ballot),
+    method: :delete %>
+  </div>
+<% end %>
+<% if @ballot.sent? %>
+  <div class="inline-block-child">
+    <%= button_to "Close Balloting and Tally Results",
+    edit_election_ballot_path(@election, @ballot),
+    method: :get %>
+  </div>
+<% end %>
 <%= link_to "Back", @election %>

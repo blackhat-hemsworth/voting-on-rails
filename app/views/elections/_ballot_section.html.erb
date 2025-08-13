@@ -1,24 +1,12 @@
 <div>
   <% @election.ballots.each do |ballot| %>
-    <div class="parent">
-      <div class="inline-block-child">
-        <%= link_to ballot.name, election_ballot_path(@election, ballot) %>
-      </div>
-      <div class="inline-block-child">
-        <%= button_to "Send Ballot",
-        send_ballots_election_ballot_path(@election, ballot),
-        method: :post %>
-      </div>
-      <div class="inline-block-child">
-        <%= button_to "Remove Ballot",
-        election_ballot_path(@election, ballot),
-        method: :delete %>
-      </div>
+    <div>
+      <%= link_to ballot.name.titleize, election_ballot_path(@election, ballot) %>
+      <br>
     </div>
   <% end %>
-
-  <br>
-
+</div>
+<div>
   <%= button_to "Add another ballot",
   new_election_ballot_path(@election),
   method: :get %>
