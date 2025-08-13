@@ -1,6 +1,6 @@
 class BallotsController < ApplicationController
   before_action :get_election
-  before_action :set_ballot, only: %i[show destroy send_ballots]
+  before_action :set_ballot, only: %i[show edit update destroy send_ballots]
 
   def index
     @ballots = @election.ballots.all
@@ -20,10 +20,22 @@ class BallotsController < ApplicationController
     @ballot = @election.ballots.build(ballot_params)
 
     if @ballot.save
-      redirect_to election_ballot_path(@election, @ballot), notice: "Ballot was successfully created."
+      redirect_to election_ballot_path(@election, @ballot), notice: 'Ballot was successfully created.'
     else
       puts @ballot.errors.full_messages
       render :new, status: :unprocessable_content
+    end
+  end
+
+  def edit
+  end
+
+  # BUG: allow to DELETE choices on update
+  def update
+    if @ballot.update(ballot_params)
+      redirect_to election_ballot_path(@election, @ballot), notice: 'Ballot was successfully created.'
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -36,6 +48,7 @@ class BallotsController < ApplicationController
     @ballot.election.participants.each do |p|
       @ballot.make_submission(p)
     end
+    @ballot.sent!
   end
 
   private
@@ -44,8 +57,14 @@ class BallotsController < ApplicationController
     params
       .require(:ballot)
       .permit(:name, :election_id,
-              votes_attributes: [ :id, :topic, :choices, :n_selections, :method,
-                                 { vote_choices_attributes: [ :id, :choice, :_destroy ] } ])
+              votes_attributes: [
+                :id, :topic, :choices, :n_selections, :method, :_destroy,
+                { vote_choices_attributes: %i[
+                  id
+                  choice
+                  _destroy
+                ] }
+              ])
   end
 
   def get_election

@@ -7,7 +7,7 @@ class Ballot < ApplicationRecord
 
   accepts_nested_attributes_for :votes, allow_destroy: true
 
-  enum :status, %i[created sent tallied]
+  enum :status, { "created": 0, "sent": 1, tallied: 2 }
 
   def make_submission(participant)
     ballot_submission =

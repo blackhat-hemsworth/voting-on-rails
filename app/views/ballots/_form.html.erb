@@ -1,0 +1,23 @@
+<%= form_with(model: [@election, @ballot], local: true,
+              data: { controller: 'nested-form',
+                      nested_form_wrapper_selector_value: '.nested-form-wrapper'
+              }) do |f| %>
+  <%= f.label "Ballot name" %>
+  <%= f.text_field :name %>
+
+  <br><br>
+
+  <h3>Votes</h3>
+
+  <%= render "ballots/votes/vote_list", f: f %>
+  <!-- Inserted elements will be injected before that target. -->
+  <div data-nested-form-target="target"></div>
+
+  <button type="button" data-action="nested-form#add">Add vote</button>
+
+  <div>
+    <%= f.submit "Save ballot" %>
+    <button type="button" onclick="history.back()">Cancel</button>
+  </div>
+
+<% end %>
