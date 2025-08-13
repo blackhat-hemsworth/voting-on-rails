@@ -9,6 +9,11 @@
         election_ballot_path(@election, ballot),
         method: :delete %>
       </div>
+      <div class="inline-block-child">
+        <%= button_to "Send Ballot",
+        send_ballots_election_ballot_path(@election, ballot),
+        method: :post %>
+      </div>
     </div>
   <% end %>
 

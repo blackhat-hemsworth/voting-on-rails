@@ -8,8 +8,8 @@ class BallotSubmissionMailer < ApplicationMailer
     @ballot_submission = params[:ballot_submission]
     election_name = params[:election_name]
 
-    @greeting = election_name + ": Voting is now open for " + @ballot_submission.ballot_name
+    greeting = election_name.titleize + ": Voting is now open for " + @ballot_submission.ballot_name.titleize
 
-    mail to: @ballot_submission.participant_email
+    mail(to: @ballot_submission.participant_email, subject: greeting)
   end
 end
