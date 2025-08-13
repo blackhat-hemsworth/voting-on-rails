@@ -32,5 +32,7 @@ class Ballot < ApplicationRecord
         vote_choice.save
       end
     end
+
+    ballot_submission.email_ballot
   end
 end

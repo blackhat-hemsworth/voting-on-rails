@@ -3,4 +3,11 @@ class BallotSubmission < ApplicationRecord
   has_many :vote_submissions, inverse_of: :ballot_submission, dependent: :destroy
 
   accepts_nested_attributes_for :vote_submissions
+
+  def email_ballot
+    BallotSubmissionMailer
+      .with(ballot_submission: self, election_name: self.ballot.election.name)
+      .ballot_open
+      .deliver_later
+  end
 end
