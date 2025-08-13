@@ -3,14 +3,10 @@ class VoteSubmissionsController < ApplicationController
 
   def update
     if @vote_submission.update(vote_submission_params)
-      ballot_sub = @vote_submission.ballot_submission
-      ballot_sub.state = :submitted
-      if ballot_sub.save
-        redirect_to ballot_submission_url(@vote_submission.ballot_submission)
-        return
-      end
-    end
+      redirect_to ballot_submission_url(@vote_submission.ballot_submission)
+    else
     render :edit, status: :unprocessable_entity
+    end
   end
 
   private

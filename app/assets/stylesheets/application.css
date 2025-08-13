@@ -62,7 +62,7 @@ ol {
   border: 1px solid;
   border-radius: 10px;
   line-height: 30px;
-  overflow: auto 
+  overflow: auto
 }
 
 .parent {
@@ -91,12 +91,4 @@ ol {
 .right {
   text-align: right
 }
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-} 
-
 

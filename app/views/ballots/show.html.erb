@@ -1,8 +1,8 @@
 <h1><%= @ballot.name %></h1>
 
 <h3>Votes</h3>
-<div class="vote">
-  <% @votes.each do |vote| %>
+<% @votes.each do |vote| %>
+  <div class="vote">
     <div class="column">
       <h5>Topic</h5>
       <%= vote.topic %>
@@ -19,7 +19,7 @@
         </div>
       <% end %>
     </div>
-  <% end %>
-
-  <%= link_to "Back", @election %>
-</div>
+  </div>
+  <br>
+<% end %>
+<%= link_to "Back", @election %>

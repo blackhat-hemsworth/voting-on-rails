@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :ballot_submissions, only: %i[show edit destroy] do
+  resources :ballot_submissions, only: %i[show edit update destroy] do
     resources :vote_submissions
   end
 

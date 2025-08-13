@@ -40,6 +40,30 @@ vote_18 = Vote.create(method: :singleround, ballot: ballot_16, created_at: '2025
 puts 'Seeding: VoteChoice'
 vote_choice_1 = VoteChoice.create(vote: vote_13, created_at: '2025-08-10 22:35:13 UTC',
                                   updated_at: '2025-08-10 22:35:13 UTC', choice: 'Michael')
+vote_choice_1 = VoteChoice.create(vote: vote_13, created_at: '2025-08-10 22:35:13 UTC',
+                                  updated_at: '2025-08-10 22:35:13 UTC', choice: 'Amber')
+vote_choice_1 = VoteChoice.create(vote: vote_13, created_at: '2025-08-10 22:35:13 UTC',
+                                  updated_at: '2025-08-10 22:35:13 UTC', choice: 'Tom')
+vote_choice_1 = VoteChoice.create(vote: vote_13, created_at: '2025-08-10 22:35:13 UTC',
+                                  updated_at: '2025-08-10 22:35:13 UTC', choice: 'Weirdo 1')
+vote_choice_1 = VoteChoice.create(vote: vote_13, created_at: '2025-08-10 22:35:13 UTC',
+                                  updated_at: '2025-08-10 22:35:13 UTC', choice: 'Weirdo 2')
+vote_choice_1 = VoteChoice.create(vote: vote_13, created_at: '2025-08-10 22:35:13 UTC',
+                                  updated_at: '2025-08-10 22:35:13 UTC', choice: 'Paula Chestnut')
+vote_choice_5 = VoteChoice.create(vote: vote_12, created_at: '2025-08-10 23:22:39 UTC',
+                                  updated_at: '2025-08-10 23:22:39 UTC', choice: 'frey')
+vote_choice_6 = VoteChoice.create(vote: vote_12, created_at: '2025-08-10 23:22:39 UTC',
+                                  updated_at: '2025-08-10 23:22:39 UTC', choice: 'fateh')
+vote_choice_7 = VoteChoice.create(vote: vote_12, created_at: '2025-08-10 23:22:39 UTC',
+                                  updated_at: '2025-08-10 23:22:39 UTC', choice: 'brenda')
+vote_choice_8 = VoteChoice.create(vote: vote_12, created_at: '2025-08-10 23:22:39 UTC',
+                                  updated_at: '2025-08-10 23:22:39 UTC', choice: 'jazz')
+vote_choice_9 = VoteChoice.create(vote: vote_12, created_at: '2025-08-10 23:22:39 UTC',
+                                  updated_at: '2025-08-10 23:22:39 UTC', choice: 'davis')
+vote_choice_10 = VoteChoice.create(vote: vote_12, created_at: '2025-08-10 23:22:39 UTC',
+                                   updated_at: '2025-08-10 23:22:39 UTC', choice: 'no endorsement')
+vote_choice_11 = VoteChoice.create(vote: vote_12, created_at: '2025-08-10 23:22:39 UTC',
+                                   updated_at: '2025-08-10 23:22:39 UTC', choice: 'abstain')
 vote_choice_5 = VoteChoice.create(vote: vote_18, created_at: '2025-08-10 23:22:39 UTC',
                                   updated_at: '2025-08-10 23:22:39 UTC', choice: 'frey')
 vote_choice_6 = VoteChoice.create(vote: vote_18, created_at: '2025-08-10 23:22:39 UTC',

@@ -1,32 +1,31 @@
 <h1><%= @ballot_submission.ballot_name.titleize %></h1>
 
 <h3>Votes</h3>
-<div class="vote">
-  <% @ballot_submission.vote_submissions.each do |vs| %>
-    <div class="column">
-      <h5>Topic</h5>
-      <%= vs.topic.titleize %>
-    </div>
-    <div class="column">
-      <h5>Number of selections</h5>
-      <%= vs.n_selections %>
-    </div>
-    <div class="centered">
-      <h3>Selections</h3>
-      <%= form_with model: [@ballot_submission, vs] do |form| %>
-        <ol>
-        <%= form.fields_for :selections do |selection_form| %>
-          <li>
-          <%= selection_form.select :selection, vs.vote_choices.map{|vc| vc.choice.titleize}, :prompt => nil %>
-          </li>
-        <% end %>
-        </ol>
-      <br><br>
-      <div>
-        <%= form.submit %>
+<%= form_with model: @ballot_submission do |ballot_form| %>
+  <%= ballot_form.fields_for :vote_submissions do |form| %>
+    <div class="vote">
+      <div class="column">
+        <h5>Topic</h5>
+        <%= form.object.topic.titleize %>
       </div>
-      <% end %>
+      <div class="column">
+        <h5>Number of selections</h5>
+        <%= form.object.n_selections %>
+      </div>
+      <div class="centered">
+        <h3>Selections</h3>
+        <ol>
+          <%= form.fields_for :selections do |selection_form| %>
+            <li>
+              <%= selection_form.select :selection,
+                                    form.object.vote_choices.map { |vc| vc.choice.titleize },
+                                    prompt: "pick one" %>
+            </li>
+          <% end %>
+        </ol>
+      </div>
     </div>
+    <br>
   <% end %>
-</div>
-
+  <%= ballot_form.submit %>
+<% end %>

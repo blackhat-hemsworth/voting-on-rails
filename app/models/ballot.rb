@@ -28,7 +28,7 @@ class Ballot < ApplicationRecord
         )
       vote_submission.save
       vote.vote_choices.each do |vote_choice|
-        vote_choice.vote_submission_id = vote_submission.id
+        vote_choice.vote_submissions << vote_submission
         vote_choice.save
       end
     end

@@ -6,8 +6,8 @@
 </div>
 
 <h3>Votes</h3>
-<div class="vote">
-  <% @ballot_submission.vote_submissions.each do |vs| %>
+<% @ballot_submission.vote_submissions.each do |vs| %>
+  <div class="vote">
     <p><strong>Selections Made: </strong><%= vs.selections.each_with_index.map{|s,i| (i+1).to_s + ". " + s.selection.titleize}.join(', ') %></p>
     <br>
     <div class="column3">
@@ -26,6 +26,7 @@
         </div>
         <% end %>
     </div>
-  <% end %>
-</div>
+  </div>
+  <br>
+<% end %>
 
