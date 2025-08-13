@@ -6,13 +6,13 @@ election_1 = Election.create(name: 'dfl convention', description: 'longest day o
                              created_at: '2025-08-10 17:10:47 UTC', updated_at: '2025-08-10 17:10:47 UTC')
 
 puts 'Seeding: Ballot'
-ballot_1 = Ballot.create(state: :created, election: election_1, created_at: '2025-08-10 17:11:51 UTC',
+ballot_1 = Ballot.create(election: election_1, created_at: '2025-08-10 17:11:51 UTC',
                          updated_at: '2025-08-10 17:11:51 UTC', name: 'ballot one')
-ballot_5 = Ballot.create(state: :created, election: election_1, created_at: '2025-08-10 21:38:02 UTC',
+ballot_5 = Ballot.create(election: election_1, created_at: '2025-08-10 21:38:02 UTC',
                          updated_at: '2025-08-10 21:38:02 UTC', name: 'third ballot')
-ballot_11 = Ballot.create(state: :created, election: election_1, created_at: '2025-08-10 22:32:10 UTC',
+ballot_11 = Ballot.create(election: election_1, created_at: '2025-08-10 22:32:10 UTC',
                           updated_at: '2025-08-10 22:32:10 UTC', name: 'last ballot')
-ballot_16 = Ballot.create(state: :created, election: election_1, created_at: '2025-08-10 23:22:39 UTC',
+ballot_16 = Ballot.create(election: election_1, created_at: '2025-08-10 23:22:39 UTC',
                           updated_at: '2025-08-10 23:22:39 UTC', name: 'ballot one')
 puts 'Seeding: Participant'
 participant_1 = Participant.create(election: election_1, created_at: '2025-08-10 17:21:49 UTC',

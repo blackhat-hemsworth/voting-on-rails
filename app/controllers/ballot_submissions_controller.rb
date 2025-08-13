@@ -5,7 +5,7 @@ class BallotSubmissionsController < ApplicationController
   end
 
   def edit
-    return unless @ballot_submission.state != "submitted"
+    return unless @ballot_submission.ready?
 
     @ballot_submission.vote_submissions.each do |vote_sub|
       vote_sub.n_selections.times { vote_sub.selections.build }
@@ -13,7 +13,7 @@ class BallotSubmissionsController < ApplicationController
   end
 
   def update
-    @ballot_submission.state = :submitted
+    @ballot_submission.submitted!
     if @ballot_submission.update(ballot_submission_params)
       redirect_to @ballot_submission
     else

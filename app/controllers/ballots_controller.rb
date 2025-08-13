@@ -18,7 +18,6 @@ class BallotsController < ApplicationController
 
   def create
     @ballot = @election.ballots.build(ballot_params)
-    @ballot.state = :created
 
     if @ballot.save
       redirect_to election_ballot_path(@election, @ballot), notice: "Ballot was successfully created."
@@ -46,7 +45,7 @@ class BallotsController < ApplicationController
       .require(:ballot)
       .permit(:name, :election_id,
               votes_attributes: [ :id, :topic, :choices, :n_selections, :method,
-                                 { vote_choices_attributes: [ :choice ] } ])
+                                 { vote_choices_attributes: [ :id, :choice, :_destroy ] } ])
   end
 
   def get_election

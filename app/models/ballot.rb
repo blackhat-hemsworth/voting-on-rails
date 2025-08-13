@@ -5,14 +5,15 @@ class Ballot < ApplicationRecord
   has_many :ballot_submissions, dependent: :destroy
   belongs_to :election
 
-  accepts_nested_attributes_for :votes
+  accepts_nested_attributes_for :votes, allow_destroy: true
+
+  enum :status, %i[created sent tallied]
 
   def make_submission(participant)
     ballot_submission =
       ballot_submissions
       .build(
         ballot_name: name,
-        state: :created,
         participant_id: participant.id,
         participant_email: participant.email
       )

@@ -1,15 +1,22 @@
 <h1><%= @ballot_submission.ballot_name.titleize %></h1>
-<h2><%= @ballot_submission.state.titleize %></h1>
+<h2><%= @ballot_submission.status.titleize %></h1>
 
 <div class = "centered">
-  <%= link_to "Fill out ballot", [:edit, @ballot_submission] %>
+  <% if @ballot_submission.ready? %>
+    <%= link_to "Fill out ballot", [:edit, @ballot_submission] %>
+  <% end %>
+  <% if @ballot_submission.submitted? %> 
+    <%= link_to "Change your submission", [:edit, @ballot_submission] %>
+  <% end %>
 </div>
 
 <h3>Votes</h3>
 <% @ballot_submission.vote_submissions.each do |vs| %>
   <div class="vote">
-    <p><strong>Selections Made: </strong><%= vs.selections.each_with_index.map{|s,i| (i+1).to_s + ". " + s.selection.titleize}.join(', ') %></p>
-    <br>
+    <% if not @ballot_submission.ready? %>
+      <p><strong>Selections Made: </strong><%= vs.selections.each_with_index.map{|s,i| (i+1).to_s + ". " + s.selection.titleize}.join(', ') %></p>
+      <br>
+    <% end %>
     <div class="column3">
       <h5>Topic</h5>
       <%= vs.topic.titleize %>

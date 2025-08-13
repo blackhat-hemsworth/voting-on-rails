@@ -5,6 +5,8 @@ class BallotSubmission < ApplicationRecord
 
   accepts_nested_attributes_for :vote_submissions
 
+  enum :status, %i[ready submitted closed]
+
   def email_ballot
     BallotSubmissionMailer
       .with(ballot_submission: self, election_name: self.ballot.election.name)

@@ -13,7 +13,7 @@ ActiveRecord::Schema[8.0].define(version: 20_250_809_010_023) do
   create_table 'ballots', force: :cascade do |t|
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
-    t.string 'state', null: false
+    t.integer 'status', default: 0
     t.string 'name', null: false
     t.bigint 'election_id', null: false
     t.index [ 'election_id' ], name: 'index_ballots_on_election_id'
@@ -50,7 +50,7 @@ ActiveRecord::Schema[8.0].define(version: 20_250_809_010_023) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.string 'ballot_name', null: false
-    t.string 'state', null: false
+    t.integer 'status', default: 0
     t.string 'participant_email', null: false
     t.bigint 'ballot_id', null: false
     t.index [ 'ballot_id' ], name: 'index_ballot_submission_on_ballot_id'
