@@ -2,6 +2,7 @@ source "https://rubygems.org"
 gem "logger", "~> 1.7.0"
 gem "fiddle"
 gem "letter_opener", group: :development
+gem "faker"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.2"

@@ -1,5 +1,6 @@
 # Seeds file for rails_vote_collector_development:
 # TODO: fake election for results testing
+require 'faker'
 
 puts 'Seeding: Election'
 election_1 = Election.create(name: 'dfl convention', description: 'longest day of my fucking life',
@@ -21,6 +22,10 @@ participant_3 = Participant.create(election: election_1, created_at: '2025-08-10
                                    updated_at: '2025-08-10 20:58:18 UTC', name: 'sam mcdemocrat', email: 'smcdem@netscape')
 participant_4 = Participant.create(election: election_1, created_at: '2025-08-10 21:10:04 UTC',
                                    updated_at: '2025-08-10 21:10:04 UTC', name: 'jim republican', email: 'jim@photon.com')
+100.times do
+  Participant.create(election: election_1, created_at: '2025-08-10 21:10:04 UTC',
+                     updated_at: '2025-08-10 21:10:04 UTC', name: Faker::Name.name, email: Faker::Internet.email)
+end
 
 puts 'Seeding: Vote'
 vote_1 = Vote.create(method: :singleround, ballot: ballot_1, created_at: '2025-08-10 17:11:51 UTC', updated_at: '2025-08-10 17:11:51 UTC',
@@ -31,13 +36,18 @@ vote_6 = Vote.create(method: :singleround, ballot: ballot_5, created_at: '2025-0
                      n_selections: 3, topic: 'parks and rec')
 vote_12 = Vote.create(method: :singleround, ballot: ballot_11, created_at: '2025-08-10 22:32:10 UTC', updated_at: '2025-08-10 22:32:10 UTC',
                       n_selections: 1, topic: 'mayoral race')
-vote_13 = Vote.create(method: :singleround, ballot: ballot_11, created_at: '2025-08-10 22:32:10 UTC', updated_at: '2025-08-10 22:32:10 UTC',
+vote_13 = Vote.create(method: :rcv, ballot: ballot_11, created_at: '2025-08-10 22:32:10 UTC', updated_at: '2025-08-10 22:32:10 UTC',
                       n_selections: 1, topic: 'parkboard')
 vote_18 = Vote.create(method: :singleround, ballot: ballot_16, created_at: '2025-08-10 23:22:39 UTC', updated_at: '2025-08-10 23:22:39 UTC',
                       n_selections: 1, topic: 'mayor')
 
 # (Skipping Selection as it has no rows)
 puts 'Seeding: VoteChoice'
+
+for joke in [ "ketchup", "smoothie", "ew" ] do
+ VoteChoice.create(vote: vote_1, created_at: '2025-08-10 22:35:13 UTC',
+                                  updated_at: '2025-08-10 22:35:13 UTC', choice: joke)
+end
 vote_choice_1 = VoteChoice.create(vote: vote_13, created_at: '2025-08-10 22:35:13 UTC',
                                   updated_at: '2025-08-10 22:35:13 UTC', choice: 'Michael')
 vote_choice_1 = VoteChoice.create(vote: vote_13, created_at: '2025-08-10 22:35:13 UTC',
