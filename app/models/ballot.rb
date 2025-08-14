@@ -25,7 +25,8 @@ class Ballot < ApplicationRecord
         .vote_submissions
         .build(
           topic: vote.topic,
-          n_selections: vote.n_selections
+          n_selections: vote.n_selections,
+          vote_id: vote.id
         )
       vote_submission.save
       vote.vote_choices.each do |vote_choice|
@@ -35,5 +36,17 @@ class Ballot < ApplicationRecord
     end
 
     ballot_submission.email_ballot
+  end
+
+  def tally_ballots
+    ballot_submissions.each do |sub|
+      sub.closed!
+    end
+
+    votes.each do |v|
+      v.tally_votes
+    end
+
+    self.tallied!
   end
 end

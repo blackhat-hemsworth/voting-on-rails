@@ -63,6 +63,8 @@ ActiveRecord::Schema[8.0].define(version: 20_250_809_010_023) do
     t.datetime 'updated_at', null: false
     t.string 'topic', null: false
     t.integer 'n_selections', null: false
+    t.bigint 'vote_id', null: false
+    t.index [ 'vote_id' ], name: 'index_vote_submission_on_vote_id'
     t.uuid 'ballot_submission_id', null: false
     t.index [ 'ballot_submission_id' ], name: 'index_vote_submission_on_ballot_submission_id'
   end
@@ -89,4 +91,5 @@ ActiveRecord::Schema[8.0].define(version: 20_250_809_010_023) do
   add_foreign_key 'vote_choices', 'votes'
   add_foreign_key 'ballot_submissions', 'ballots'
   add_foreign_key 'vote_submissions', 'ballot_submissions'
+  add_foreign_key 'vote_submissions', 'votes'
 end

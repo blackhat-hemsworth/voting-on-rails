@@ -20,7 +20,7 @@ class BallotsController < ApplicationController
     @ballot = @election.ballots.build(ballot_params)
 
     if @ballot.save
-      redirect_to election_ballot_path(@election, @ballot), notice: 'Ballot was successfully created.'
+      redirect_to election_ballot_path(@election, @ballot), notice: "Ballot was successfully created."
     else
       puts @ballot.errors.full_messages
       render :new, status: :unprocessable_content
@@ -30,10 +30,9 @@ class BallotsController < ApplicationController
   def edit
   end
 
-  # BUG: allow to DELETE choices on update
   def update
     if @ballot.update(ballot_params)
-      redirect_to election_ballot_path(@election, @ballot), notice: 'Ballot was successfully created.'
+      redirect_to election_ballot_path(@election, @ballot), notice: "Ballot was successfully created."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -59,11 +58,7 @@ class BallotsController < ApplicationController
       .permit(:name, :election_id,
               votes_attributes: [
                 :id, :topic, :choices, :n_selections, :method, :_destroy,
-                { vote_choices_attributes: %i[
-                  id
-                  choice
-                  _destroy
-                ] }
+                { vote_choices_attributes: %i[id choice _destroy] }
               ])
   end
 
