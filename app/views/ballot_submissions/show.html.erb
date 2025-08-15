@@ -14,7 +14,7 @@
 <% @ballot_submission.vote_submissions.each do |vs| %>
   <div class="vote">
     <% if not @ballot_submission.ready? %>
-      <p><strong>Selections Made: </strong><%= vs.selections.each_with_index.map{|s,i| (i+1).to_s + ". " + s.selection.titleize}.join(', ') %></p>
+      <p><strong>Selections Made: </strong><%= vs.selections.each.map{|s| s.preference.to_s + ". " + s.selection.titleize}.join(', ') %></p>
       <br>
     <% end %>
     <div class="column3">

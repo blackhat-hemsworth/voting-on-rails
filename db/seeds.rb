@@ -36,10 +36,10 @@ vote_6 = Vote.create(method: :singleround, ballot: ballot_5, created_at: '2025-0
                      n_selections: 3, topic: 'parks and rec')
 vote_12 = Vote.create(method: :singleround, ballot: ballot_11, created_at: '2025-08-10 22:32:10 UTC', updated_at: '2025-08-10 22:32:10 UTC',
                       n_selections: 1, topic: 'mayoral race')
-vote_13 = Vote.create(method: :rcv, ballot: ballot_11, created_at: '2025-08-10 22:32:10 UTC', updated_at: '2025-08-10 22:32:10 UTC',
-                      n_selections: 1, topic: 'parkboard')
+vote_13 = Vote.create(method: :multidroplast, ballot: ballot_11, created_at: '2025-08-10 22:32:10 UTC', updated_at: '2025-08-10 22:32:10 UTC',
+                      n_selections: 3, topic: 'parkboard')
 vote_18 = Vote.create(method: :singleround, ballot: ballot_16, created_at: '2025-08-10 23:22:39 UTC', updated_at: '2025-08-10 23:22:39 UTC',
-                      n_selections: 1, topic: 'mayor')
+                      n_selections: 2, topic: 'mayor')
 
 # (Skipping Selection as it has no rows)
 puts 'Seeding: VoteChoice'
@@ -92,3 +92,6 @@ vote_choice_11 = VoteChoice.create(vote: vote_18, created_at: '2025-08-10 23:22:
 b = Ballot.where(election_id: 1).last
 p = Participant.where(:election_id == 1).first
 bs = b.make_submission(p)
+
+
+# TODO: fake votes here? elsewhere??

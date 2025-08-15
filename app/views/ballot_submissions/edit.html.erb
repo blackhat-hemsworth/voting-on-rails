@@ -14,15 +14,15 @@
       </div>
       <div class="centered">
         <h3>Selections</h3>
-        <ol>
-          <%= form.fields_for :selections do |selection_form| %>
-            <li>
-              <%= selection_form.select :selection,
-                                    form.object.vote_choices.map { |vc| vc.choice.titleize },
-                                    prompt: "pick one" %>
-            </li>
-          <% end %>
-        </ol>
+        <%= form.fields_for :selections do |selection_form| %>
+          <div>
+            <%= selection_form.object.preference.to_s + ". " %>
+            <%= selection_form.hidden_field :preference, value: selection_form.object.preference %>
+            <%= selection_form.select :selection,
+                                  form.object.vote_choices.map { |vc| vc.choice.titleize },
+                                  prompt: "pick one" %>
+          </div>
+        <% end %>
       </div>
     </div>
     <br>

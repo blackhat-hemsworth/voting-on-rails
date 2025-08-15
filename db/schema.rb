@@ -32,10 +32,16 @@ ActiveRecord::Schema[8.0].define(version: 20_250_809_010_023) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.string 'topic', null: false
-    t.string 'method', null: false
+    t.integer 'method', null: false
     t.integer 'n_selections', null: false
     t.bigint 'ballot_id', null: false
     t.index [ 'ballot_id' ], name: 'index_votes_on_ballot_id'
+  end
+
+  create_table 'round_tallies', force: :cascade do |t|
+    t.string 'tally', null: false
+    t.bigint 'vote_id', null: false
+    t.index [ 'vote_id' ]
   end
 
   create_table 'vote_choices', force: :cascade do |t|
@@ -78,7 +84,8 @@ ActiveRecord::Schema[8.0].define(version: 20_250_809_010_023) do
 
   create_table 'selections', force: :cascade do |t|
     t.bigint 'vote_submission_id', null: false
-    t.string 'selection'
+    t.integer 'preference', null: false
+    t.string 'selection', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.index [ 'vote_submission_id' ], name: 'index_selections_on_vote_submission_id'
@@ -88,6 +95,7 @@ ActiveRecord::Schema[8.0].define(version: 20_250_809_010_023) do
   add_foreign_key 'participants', 'elections'
   add_foreign_key 'selections', 'vote_submissions'
   add_foreign_key 'votes', 'ballots'
+  add_foreign_key 'round_tallies', 'votes'
   add_foreign_key 'vote_choices', 'votes'
   add_foreign_key 'ballot_submissions', 'ballots'
   add_foreign_key 'vote_submissions', 'ballot_submissions'

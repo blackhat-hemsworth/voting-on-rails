@@ -8,7 +8,7 @@ class BallotSubmissionsController < ApplicationController
     return unless @ballot_submission.ready?
 
     @ballot_submission.vote_submissions.each do |vote_sub|
-      vote_sub.n_selections.times { vote_sub.selections.build }
+      vote_sub.n_selections.times { |i| vote_sub.selections.build({ preference: i + 1 }) }
     end
   end
 
@@ -38,7 +38,8 @@ class BallotSubmissionsController < ApplicationController
                 :n_selections,
                 selections_attributes: [
                   :id,
-                  :selection
+                  :selection,
+                  :preference
                 ]
               ])
   end
