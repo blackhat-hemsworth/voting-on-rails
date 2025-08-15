@@ -1,4 +1,3 @@
-# TODO: results object? Is that a case for Job handling?
 class Ballot < ApplicationRecord
   has_many :votes, inverse_of: :ballot, dependent: :destroy
   has_many :vote_choices, through: :votes

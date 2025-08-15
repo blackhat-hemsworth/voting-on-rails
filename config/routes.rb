@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :ballots do
       member do
         post :send_ballots
+        post :tally_results
       end
     end
   end

@@ -19,7 +19,21 @@
         </div>
       <% end %>
     </div>
-    <!-- TODO: show votes tallied when tallied -->
+    <% if @ballot.tallied? %>
+      <% vote.round_tallies.each do |rt| %>
+        <div>
+          <%= "Round " + rt.round.to_s + ":" %>
+          <ol class="left-justified">
+            <% rt.tally.sort_by{|k,v| -v}.each do |tally| %>
+              <li>
+                <strong><%= "#{(tally.first ? tally.first : "No vote")}:" %></strong>
+                <%= " #{tally.last} (#{(100.0 * tally.last / @ballot.ballot_submissions.length).round(1)}%)" %>
+              </li>
+            <% end %>
+          </ol>
+        </div>
+      <% end %>
+    <% end %>
   </div>
   <br>
 <% end %>
@@ -43,11 +57,15 @@
 <% end %>
 
 <% if @ballot.sent? %>
-  <!-- TODO: show ballots sent / submitted -->
+  <div>
+    <%= "Sent: " + @ballot.ballot_submissions.length.to_s %>
+    <%= "Submitted: " +
+      @ballot.ballot_submissions.where(status: "submitted").length.to_s %>
+  </div>
   <div class="inline-block-child">
     <%= button_to "Close Balloting and Tally Results",
-    edit_election_ballot_path(@election, @ballot),
-    method: :get %>
+    tally_results_election_ballot_path(@election, @ballot),
+    method: :post %>
   </div>
 <% end %>
 

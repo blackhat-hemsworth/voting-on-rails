@@ -1,6 +1,6 @@
 class BallotsController < ApplicationController
   before_action :get_election
-  before_action :set_ballot, only: %i[show edit update destroy send_ballots]
+  before_action :set_ballot, only: %i[show edit update destroy send_ballots tally_results]
 
   def index
     @ballots = @election.ballots.all
@@ -48,6 +48,13 @@ class BallotsController < ApplicationController
       @ballot.make_submission(p)
     end
     @ballot.sent!
+  end
+
+  def tally_results
+    @ballot.votes.each do |v|
+      v.tally_votes
+    end
+    @ballot.tallied!
   end
 
   private

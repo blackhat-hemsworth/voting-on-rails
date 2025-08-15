@@ -10,26 +10,28 @@ class Vote < ApplicationRecord
   def tally_votes
     choices = self.vote_choices.map { |vc| vc.choice }
     if self.singleround?
-      self.round_tallies.build(tally: make_tally(choices)).save
+      self.round_tallies.build(round: 1, tally: make_tally(choices)).save
     end
 
     if self.multidroplast?
       # TODO: droplast logic on choices + stopping logic
-      self.round_tallies.build(tally: make_tally(choices)).save
+      # TODO: abstain / no endorsement handle? potentially another column...
+      self.round_tallies.build(round: 1, tally: make_tally(choices)).save
     end
   end
 
+  private
+
   def make_tally(allow_list)
-    puts allow_list
     VoteSubmission
       .where(vote_id: self.id)
       .map { |v| v.selections }
       .map {
         |s_plural| s_plural.reduce {
-          |min, s| min.preference < s.preference & (allow_list.include? s.selection) ? min : s
+          |min, s| (min.preference > s.preference) & (allow_list.include? s.selection) ? s : min
         }
       }
-      .map { |c| c.selection }
+      .map { |c| c ? c.selection : nil }
       .tally
   end
 end

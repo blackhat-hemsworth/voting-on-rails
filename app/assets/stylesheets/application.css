@@ -54,6 +54,10 @@ ol {
   list-style-position: inside;
 }
 
+.left-justified {
+  text-align: left
+}
+
 .subhead {
   text-align: center
 }

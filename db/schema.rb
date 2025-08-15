@@ -39,6 +39,7 @@ ActiveRecord::Schema[8.0].define(version: 20_250_809_010_023) do
   end
 
   create_table 'round_tallies', force: :cascade do |t|
+    t.integer 'round', null: false
     t.string 'tally', null: false
     t.bigint 'vote_id', null: false
     t.index [ 'vote_id' ]

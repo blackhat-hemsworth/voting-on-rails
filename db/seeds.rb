@@ -1,5 +1,4 @@
 # Seeds file for rails_vote_collector_development:
-# TODO: fake election for results testing
 require 'faker'
 
 puts 'Seeding: Election'
