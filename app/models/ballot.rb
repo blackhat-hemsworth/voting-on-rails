@@ -21,12 +21,12 @@ class Ballot < ApplicationRecord
     votes.each do |vote|
       vote_submission =
         ballot_submission
-        .vote_submissions
-        .build(
-          topic: vote.topic,
-          n_selections: vote.n_selections,
-          vote_id: vote.id
-        )
+          .vote_submissions
+          .build(
+            topic: vote.topic,
+            n_selections: vote.n_selections,
+            vote_id: vote.id
+          )
       vote_submission.save
       vote.vote_choices.each do |vote_choice|
         vote_choice.vote_submissions << vote_submission
@@ -37,15 +37,45 @@ class Ballot < ApplicationRecord
     ballot_submission.email_ballot
   end
 
-  def tally_ballots
-    ballot_submissions.each do |sub|
-      sub.closed!
-    end
+  # def tally_ballots
+  #   ballot_submissions.each do |sub|
+  #     sub.closed!
+  #   end
 
-    votes.each do |v|
-      v.tally_votes
-    end
+  #   votes.each do |v|
+  #     v.tally_votes
+  #   end
 
-    self.tallied!
+  #   self.tallied!
+  # end
+
+  def fake_submission(participant)
+    ballot_submission =
+      ballot_submissions
+      .build(
+        ballot_name: name,
+        participant_id: participant.id,
+        participant_email: participant.email,
+        status: :submitted,
+      )
+    ballot_submission.save
+
+    votes.each do |vote|
+      vote_submission =
+        ballot_submission
+        .vote_submissions
+        .build(
+          topic: vote.topic,
+          n_selections: vote.n_selections,
+          vote_id: vote.id,
+        )
+      vote_submission.save
+
+      vote.n_selections.times { |i| vote_submission.selections.build(preference: i + 1, selection:  vote.vote_choices.sample.choice.titleize).save }
+      vote.vote_choices.each do |vote_choice|
+        vote_choice.vote_submissions << vote_submission
+        vote_choice.save
+      end
+    end
   end
 end

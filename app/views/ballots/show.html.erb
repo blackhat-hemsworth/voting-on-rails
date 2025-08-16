@@ -54,6 +54,12 @@
     election_ballot_path(@election, @ballot),
     method: :delete %>
   </div>
+  <div class="inline-block-child">
+    <%= button_to "Generate Fake Results",
+    fake_ballots_election_ballot_path(@election, @ballot),
+    method: :post,
+    class: "red-button" %>
+  </div>
 <% end %>
 
 <% if @ballot.sent? %>

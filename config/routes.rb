@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       member do
         post :send_ballots
         post :tally_results
+        post :fake_ballots
       end
     end
   end

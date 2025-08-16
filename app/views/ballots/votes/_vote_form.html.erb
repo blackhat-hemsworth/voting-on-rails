@@ -6,9 +6,8 @@
 
   <div class="column3">
     <%= f.label "Voting method" %>
-    <%= f.select :method, %i[singleround multidroplast] %>
+    <%= f.select :method, Vote.methods.keys %>
   </div>
-
 
   <div class="column3">
     <%= f.label "Number of selections" %>

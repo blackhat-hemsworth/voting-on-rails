@@ -9,9 +9,10 @@
   <br>
 </template>
 
-<div class="vote">
-  <%= f.fields_for :votes do |vote_fields| %>
+<%= f.fields_for :votes do |vote_fields| %>
+  <div class="vote">
     <%= render "ballots/votes/vote_form", f: vote_fields %>
-  <% end %>
-</div>
+  </div>
+  <br>
+<% end %>
 <br>
