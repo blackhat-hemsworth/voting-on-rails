@@ -48,6 +48,8 @@ class BallotsController < ApplicationController
       @ballot.make_submission(p)
     end
     @ballot.sent!
+
+    redirect_back fallback_location: root_path
   end
 
   def tally_results
@@ -55,6 +57,8 @@ class BallotsController < ApplicationController
       v.tally_votes
     end
     @ballot.tallied!
+
+    redirect_back fallback_location: root_path
   end
 
   def fake_ballots
