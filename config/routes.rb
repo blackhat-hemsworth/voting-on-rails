@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resource :session
+  resources :passwords, param: :token
   resources :elections do
     resources :participants, only: %i[destroy]
     resources :ballots do

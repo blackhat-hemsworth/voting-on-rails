@@ -27,5 +27,13 @@
     </div>
     <br>
   <% end %>
+  <span class="error-message">
+    <%= if @ballot_submission.errors.any?
+      "Error: #{@ballot_submission.errors.first.full_message}"
+    else
+      ""
+    end %>
+    <br>
+  </span>
   <%= ballot_form.submit %>
 <% end %>

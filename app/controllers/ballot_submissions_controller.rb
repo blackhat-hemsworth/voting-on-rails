@@ -1,5 +1,6 @@
 class BallotSubmissionsController < ApplicationController
   before_action :set_ballot_submission, only: %i[show edit update]
+  allow_unauthenticated_access
 
   def show
   end

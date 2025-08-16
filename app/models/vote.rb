@@ -3,6 +3,7 @@ class Vote < ApplicationRecord
   has_many :vote_choices, inverse_of: :vote, dependent: :destroy
   has_many :round_tallies
 
+  validates_presence_of :topic, :n_selections, :method
   accepts_nested_attributes_for :vote_choices, allow_destroy: true
 
   enum :method, %i[singleround multidroplast]

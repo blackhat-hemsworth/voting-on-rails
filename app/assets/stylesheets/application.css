@@ -58,6 +58,12 @@ ol {
   text-align: left
 }
 
+.error-message {
+  text-align: left;
+  color: red;
+  justify-content: left
+}
+
 .subhead {
   text-align: center
 }

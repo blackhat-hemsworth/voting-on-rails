@@ -1,6 +1,8 @@
 # Seeds file for rails_vote_collector_development:
 require 'faker'
 
+User.create! email_address: "deepstate@government.org", password: "password", password_confirmation: "password"
+
 puts 'Seeding: Election'
 election_1 = Election.create(name: 'dfl convention', description: 'longest day of my fucking life',
                              created_at: '2025-08-10 17:10:47 UTC', updated_at: '2025-08-10 17:10:47 UTC')

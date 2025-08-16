@@ -1,11 +1,18 @@
 <h1>Host an Election!</h1>
 
 <%= form_with model: @election do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
 
-  <%= f.label :description %>
-  <%= f.text_field :description %>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
 
-  <%= f.submit "Create" %>
+    <%= f.submit "Create" %>
+  </div>
+  <br>
+
+  <span class="error-message">
+    <%= @election.errors.any? ? "Error: #{@election.errors.first.full_message}" : "" %>
+  </span>
 <% end %>

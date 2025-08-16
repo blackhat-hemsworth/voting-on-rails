@@ -4,6 +4,8 @@ class Ballot < ApplicationRecord
   has_many :ballot_submissions, dependent: :destroy
   belongs_to :election
 
+  validates_presence_of :name
+
   accepts_nested_attributes_for :votes, allow_destroy: true
 
   enum :status, { "created": 0, "sent": 1, tallied: 2 }
