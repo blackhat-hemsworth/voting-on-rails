@@ -49,6 +49,7 @@ ActiveRecord::Schema[8.0].define(version: 20_250_809_010_023) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.string 'choice', null: false
+    t.boolean 'droppable', null: false
     t.bigint 'vote_id', null: false
     t.index [ 'vote_id' ], name: 'index choices on vote id'
   end

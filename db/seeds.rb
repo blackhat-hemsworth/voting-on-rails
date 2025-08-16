@@ -45,48 +45,48 @@ puts 'Seeding: VoteChoice'
 
 for joke in [ "ketchup", "smoothie", "ew" ] do
  VoteChoice.create(vote: vote_1, created_at: '2025-08-10 22:35:13 UTC',
-                                  updated_at: '2025-08-10 22:35:13 UTC', choice: joke)
+                                  updated_at: '2025-08-10 22:35:13 UTC', droppable: true, choice: joke)
 end
 vote_choice_1 = VoteChoice.create(vote: vote_13, created_at: '2025-08-10 22:35:13 UTC',
-                                  updated_at: '2025-08-10 22:35:13 UTC', choice: 'Michael')
+                                  updated_at: '2025-08-10 22:35:13 UTC', droppable: true, choice: 'Michael')
 vote_choice_1 = VoteChoice.create(vote: vote_13, created_at: '2025-08-10 22:35:13 UTC',
-                                  updated_at: '2025-08-10 22:35:13 UTC', choice: 'Amber')
+                                  updated_at: '2025-08-10 22:35:13 UTC', droppable: true, choice: 'Amber')
 vote_choice_1 = VoteChoice.create(vote: vote_13, created_at: '2025-08-10 22:35:13 UTC',
-                                  updated_at: '2025-08-10 22:35:13 UTC', choice: 'Tom')
+                                  updated_at: '2025-08-10 22:35:13 UTC', droppable: true, choice: 'Tom')
 vote_choice_1 = VoteChoice.create(vote: vote_13, created_at: '2025-08-10 22:35:13 UTC',
-                                  updated_at: '2025-08-10 22:35:13 UTC', choice: 'Weirdo 1')
+                                  updated_at: '2025-08-10 22:35:13 UTC', droppable: true, choice: 'Weirdo 1')
 vote_choice_1 = VoteChoice.create(vote: vote_13, created_at: '2025-08-10 22:35:13 UTC',
-                                  updated_at: '2025-08-10 22:35:13 UTC', choice: 'Weirdo 2')
+                                  updated_at: '2025-08-10 22:35:13 UTC', droppable: true, choice: 'Weirdo 2')
 vote_choice_1 = VoteChoice.create(vote: vote_13, created_at: '2025-08-10 22:35:13 UTC',
-                                  updated_at: '2025-08-10 22:35:13 UTC', choice: 'Paula Chestnut')
+                                  updated_at: '2025-08-10 22:35:13 UTC', droppable: true, choice: 'Paula Chestnut')
 vote_choice_5 = VoteChoice.create(vote: vote_12, created_at: '2025-08-10 23:22:39 UTC',
-                                  updated_at: '2025-08-10 23:22:39 UTC', choice: 'frey')
+                                  updated_at: '2025-08-10 23:22:39 UTC', droppable: true, choice: 'frey')
 vote_choice_6 = VoteChoice.create(vote: vote_12, created_at: '2025-08-10 23:22:39 UTC',
-                                  updated_at: '2025-08-10 23:22:39 UTC', choice: 'fateh')
+                                  updated_at: '2025-08-10 23:22:39 UTC', droppable: true, choice: 'fateh')
 vote_choice_7 = VoteChoice.create(vote: vote_12, created_at: '2025-08-10 23:22:39 UTC',
-                                  updated_at: '2025-08-10 23:22:39 UTC', choice: 'brenda')
+                                  updated_at: '2025-08-10 23:22:39 UTC', droppable: true, choice: 'brenda')
 vote_choice_8 = VoteChoice.create(vote: vote_12, created_at: '2025-08-10 23:22:39 UTC',
-                                  updated_at: '2025-08-10 23:22:39 UTC', choice: 'jazz')
+                                  updated_at: '2025-08-10 23:22:39 UTC', droppable: true, choice: 'jazz')
 vote_choice_9 = VoteChoice.create(vote: vote_12, created_at: '2025-08-10 23:22:39 UTC',
-                                  updated_at: '2025-08-10 23:22:39 UTC', choice: 'davis')
+                                  updated_at: '2025-08-10 23:22:39 UTC', droppable: true, choice: 'davis')
 vote_choice_10 = VoteChoice.create(vote: vote_12, created_at: '2025-08-10 23:22:39 UTC',
-                                   updated_at: '2025-08-10 23:22:39 UTC', choice: 'no endorsement')
+                                   updated_at: '2025-08-10 23:22:39 UTC', droppable: false, choice: 'no endorsement')
 vote_choice_11 = VoteChoice.create(vote: vote_12, created_at: '2025-08-10 23:22:39 UTC',
-                                   updated_at: '2025-08-10 23:22:39 UTC', choice: 'abstain')
+                                   updated_at: '2025-08-10 23:22:39 UTC', droppable: false, choice: 'abstain')
 vote_choice_5 = VoteChoice.create(vote: vote_18, created_at: '2025-08-10 23:22:39 UTC',
-                                  updated_at: '2025-08-10 23:22:39 UTC', choice: 'frey')
+                                  updated_at: '2025-08-10 23:22:39 UTC', droppable: true, choice: 'frey')
 vote_choice_6 = VoteChoice.create(vote: vote_18, created_at: '2025-08-10 23:22:39 UTC',
-                                  updated_at: '2025-08-10 23:22:39 UTC', choice: 'fateh')
+                                  updated_at: '2025-08-10 23:22:39 UTC', droppable: true, choice: 'fateh')
 vote_choice_7 = VoteChoice.create(vote: vote_18, created_at: '2025-08-10 23:22:39 UTC',
-                                  updated_at: '2025-08-10 23:22:39 UTC', choice: 'brenda')
+                                  updated_at: '2025-08-10 23:22:39 UTC', droppable: true, choice: 'brenda')
 vote_choice_8 = VoteChoice.create(vote: vote_18, created_at: '2025-08-10 23:22:39 UTC',
-                                  updated_at: '2025-08-10 23:22:39 UTC', choice: 'jazz')
+                                  updated_at: '2025-08-10 23:22:39 UTC', droppable: true, choice: 'jazz')
 vote_choice_9 = VoteChoice.create(vote: vote_18, created_at: '2025-08-10 23:22:39 UTC',
-                                  updated_at: '2025-08-10 23:22:39 UTC', choice: 'davis')
+                                  updated_at: '2025-08-10 23:22:39 UTC', droppable: true, choice: 'davis')
 vote_choice_10 = VoteChoice.create(vote: vote_18, created_at: '2025-08-10 23:22:39 UTC',
-                                   updated_at: '2025-08-10 23:22:39 UTC', choice: 'no endorsement')
+                                   updated_at: '2025-08-10 23:22:39 UTC', droppable: false, choice: 'no endorsement')
 vote_choice_11 = VoteChoice.create(vote: vote_18, created_at: '2025-08-10 23:22:39 UTC',
-                                   updated_at: '2025-08-10 23:22:39 UTC', choice: 'abstain')
+                                   updated_at: '2025-08-10 23:22:39 UTC', droppable: false, choice: 'abstain')
 
 # b = Ballot.where(election_id: 1).last
 # p = Participant.where(:election_id == 1).first

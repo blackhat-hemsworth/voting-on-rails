@@ -16,6 +16,7 @@ class Vote < ApplicationRecord
     if self.multidroplast?
       # TODO: droplast logic on choices + stopping logic
       # TODO: abstain / no endorsement handle? potentially another column...
+
       self.round_tallies.build(round: 1, tally: make_tally(choices)).save
     end
   end

@@ -71,7 +71,7 @@ class BallotsController < ApplicationController
       .permit(:name, :election_id,
               votes_attributes: [
                 :id, :topic, :choices, :n_selections, :method, :_destroy,
-                { vote_choices_attributes: %i[id choice _destroy] }
+                { vote_choices_attributes: %i[id choice droppable _destroy] }
               ])
   end
 
